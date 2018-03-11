@@ -12,8 +12,8 @@ export class AppComponent {
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
 
-  latitude: number;
-  longitude: number;
+  latitude: any;
+  longitude: any;
 
   ngOnInit() {
     var mapProp = {
@@ -28,8 +28,7 @@ export class AppComponent {
     this.map.setMapTypeId(mapTypeId)
   }
 
-  setCenter(e: any) {
-    e.preventDefault();
+  setCenter() {
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
 
     let location = new google.maps.LatLng(this.latitude, this.longitude);
