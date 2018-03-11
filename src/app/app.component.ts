@@ -8,12 +8,12 @@ import { } from '@types/googlemaps';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
 
-  latitude:number;
-  longitude:number;
+  latitude: number;
+  longitude: number;
 
   ngOnInit() {
     var mapProp = {
@@ -25,11 +25,19 @@ export class AppComponent {
   }
 
   setMapType(mapTypeId: string) {
-    this.map.setMapTypeId(mapTypeId)    
+    this.map.setMapTypeId(mapTypeId)
   }
 
-  setCenter(e:any){
+  setCenter(e: any) {
     e.preventDefault();
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
+
+    let location = new google.maps.LatLng(this.latitude, this.longitude);
+
+    let marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      title: 'Got you!'
+    });
   }
 }
