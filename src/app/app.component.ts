@@ -38,5 +38,19 @@ export class AppComponent {
       map: this.map,
       title: 'Got you!'
     });
+
+    marker.addListener('click', this.simpleMarkerHandler);
+
+    marker.addListener('click', () => {
+      this.markerHandler(marker);
+    });
+  }
+
+  simpleMarkerHandler() {
+    alert('Simple Component\'s function...');
+  }
+
+  markerHandler(marker: google.maps.Marker) {
+    alert('Marker\'s Title: ' + marker.getTitle());
   }
 }
