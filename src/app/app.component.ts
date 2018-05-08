@@ -15,6 +15,23 @@ export class AppComponent {
   latitude: any;
   longitude: any;
 
+  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+  markerTypes = [
+    {
+      text: "Parking", value: "parking_lot_maps.png"
+    }
+    // ,
+    // {
+    //   text: "Library", value: "library_maps.png"
+    // },
+    // {
+    //   text: "Information", value: "info-i_maps.png"
+    // }
+  ];
+
+  selectedMarkerType: string = "parking_lot_maps.png";
+
   ngOnInit() {
     var mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),
@@ -52,5 +69,23 @@ export class AppComponent {
 
   markerHandler(marker: google.maps.Marker) {
     alert('Marker\'s Title: ' + marker.getTitle());
+  }
+
+  showCustomMarker() {
+
+
+    this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
+
+    let location = new google.maps.LatLng(this.latitude, this.longitude);
+
+    console.log(`selected marker: ${this.selectedMarkerType}`);
+    
+    let marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      icon: this.iconBase + this.selectedMarkerType,
+      title: 'Got you!'
+    });
+
   }
 }

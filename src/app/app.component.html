@@ -13,7 +13,7 @@
       <button (click)="setMapType('satellite')" class="btn btn-danger">Satellite</button>
       <button (click)="setMapType('roadmap')" class="btn btn-warning">Road Map</button>
     </div>
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="col-md-5 col-sm-12 col-xs-12">
       <form class="form-inline" #form="ngForm">
         <div class="form-group">
           <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude" placeholder="Enter latitude" required>
@@ -22,7 +22,17 @@
           <input type="text" class="form-control" name="longitude" [(ngModel)]="longitude" placeholder="Enter longitude" required>
         </div>
         <button type="button" (click)="setCenter()" class="btn btn-primary" [disabled]="form.invalid"> Go</button>
+
+
       </form>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <label>Select Marker: </label>
+        <select [(ngModel)]="selectedMarkerType" name="category">
+          <option *ngFor="let marker of markerTypes" [value]="marker.value">{{marker.text}}</option>
+        </select>
+      <button type="button" (click)="showCustomMarker()" class="btn btn-primary" [disabled]="form.invalid"> Custom Marker</button>
     </div>
   </div>
 
