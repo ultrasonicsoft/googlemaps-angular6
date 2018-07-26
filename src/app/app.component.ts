@@ -8,7 +8,6 @@ import { } from '@types/googlemaps';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
 
