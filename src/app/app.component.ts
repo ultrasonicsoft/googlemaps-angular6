@@ -31,13 +31,20 @@ export class AppComponent {
 
   selectedMarkerType: string = "parking_lot_maps.png";
 
+  isHidden = false;
+
   ngOnInit() {
-    var mapProp = {
+
+  }
+
+  ngAfterContentInit() {
+    let mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+
   }
 
   setMapType(mapTypeId: string) {
@@ -78,13 +85,18 @@ export class AppComponent {
     let location = new google.maps.LatLng(this.latitude, this.longitude);
 
     console.log(`selected marker: ${this.selectedMarkerType}`);
-    
+
     let marker = new google.maps.Marker({
       position: location,
       map: this.map,
       icon: this.iconBase + this.selectedMarkerType,
       title: 'Got you!'
     });
+  }
 
+  toggleMap() {
+    this.isHidden = !this.isHidden;
+
+    this.gmapElement.nativeElement.hidden = this.isHidden;
   }
 }
